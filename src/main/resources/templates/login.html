@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+
+    <title>Login</title>
+
+    <th:block th:insert="fragments/libs :: head/link"></th:block>
+
+    <link rel="stylesheet" th:href="@{/css/login.css}">
+
+</head>
+<body th:style="'background:url(' + @{/img/background.jpg} + '); background-size: cover; background-repeat: no-repeat; background-attachment: fixed; background-size: cover;'">
+<div class="container vertical-center">
+    <div class="jumbotron custom-jumbotron text-center">
+        <h1 class="jumbotron-title">Maris Inc.</h1>
+        <br />
+        <div  sec:authorize="isAnonymous()">
+            <a role="button" class="btn btn-primary blurple-button" th:href="@{/oauth2/authorization/discord}">Log in with Discord</a>
+        </div>
+        <div class="" th:if="${param.errorMessage != null}">
+            <p class="failure-message" th:text="${param.errorMessage}"></p>
+        </div>
+        <div th:if="${param.logoutMessage != null}">
+            <p class="success-message" th:text="${param.logoutMessage}">
+            </p>
+        </div>
+    </div>
+</div>
+
+<th:block th:insert="fragments/libs :: body/script"></th:block>
+
+</body>
+</html>
